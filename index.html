@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Click to chat</title>
+<meta name="description" content="الصق أي نص وخد الأرقام اللي فيه، وكلم صاحبها على واتساب أو اتصل بيه أو احفظه.">
+<meta name="theme-color" content="#4b1c8f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Click to chat">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.2v.1"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 6h16M9 6V3.5h6V6M6 6l1 15h10l1-15M10 10.5v6.5M14 10.5v6.5"/></symbol>
+    <symbol id="i-paste" viewBox="0 0 24 24"><rect x="4.5" y="4.5" width="15" height="17" rx="1.5"/><path d="M9 2.5h6v4H9z"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.6L6 21z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3.4 20.6 4.7 16A8.7 8.7 0 1 1 8 19.3z"/><path d="M9 8.2c-.6.5-.8 1.3-.5 2.3a7.6 7.6 0 0 0 5 5c1 .3 1.8.1 2.3-.5l.4-.7-2-1.2-.9.8a5.5 5.5 0 0 1-2.8-2.8l.8-.9-1.2-2z"/></symbol>
+    <symbol id="i-call" viewBox="0 0 24 24"><path d="M5 3.5h3.6l1.6 4.6-2.2 1.6a12.5 12.5 0 0 0 6.3 6.3l1.6-2.2 4.6 1.6V19a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 3.2 5.5 1.8 1.8 0 0 1 5 3.5z"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4.2"/><path d="M2.5 20.5c.6-4 3.6-6.2 7.5-6.2 1.4 0 2.700.3 3.800.8M18.500 14v7M15 17.500h7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </defs>
+</svg>
+
+<main class="card">
+  <header class="card-head" dir="ltr">
+    <h1>Click to chat</h1>
+    <button type="button" class="icon-btn" id="infoBtn" aria-label="عن التطبيق"><svg class="ico"><use href="#i-info"/></svg></button>
+  </header>
+  <hr>
+
+  <div class="install" id="install" hidden>
+    <p>عشان يتثبت زي أي تطبيق: اضغط زرار المشاركة في Safari، وبعدها «إضافة إلى الشاشة الرئيسية».</p>
+    <button type="button" class="text-btn" id="installHide">إخفاء</button>
+  </div>
+
+  <div class="tools" dir="ltr">
+    <button type="button" class="country-btn" id="countryBtn" aria-label="تغيير البلد">
+      <span id="countryFlag" aria-hidden="true"></span>
+      <span id="countryName" dir="auto"></span>
+      <svg class="ico ico-sm"><use href="#i-chevron"/></svg>
+    </button>
+    <div class="tool-icons">
+      <button type="button" class="icon-btn" id="clearBtn" aria-label="مسح"><svg class="ico"><use href="#i-trash"/></svg></button>
+      <button type="button" class="icon-btn" id="pasteBtn" aria-label="لصق"><svg class="ico"><use href="#i-paste"/></svg></button>
+      <button type="button" class="icon-btn" id="historyBtn" aria-label="الأرقام السابقة"><svg class="ico"><use href="#i-history"/></svg></button>
+    </div>
+  </div>
+
+  <section class="picker" id="picker" aria-live="polite">
+    <p class="hint" id="hint">انسخ أي نص فيه أرقام، واضغط زرار اللصق.</p>
+    <textarea id="manualBox" rows="3" hidden placeholder="الصق النص هنا" aria-label="الصق النص هنا"></textarea>
+    <ul class="numbers" id="numbers" hidden></ul>
+  </section>
+
+  <div class="number-row" dir="ltr">
+    <label class="code-field">
+      <span aria-hidden="true">+</span>
+      <input id="codeInput" type="text" inputmode="numeric" autocomplete="off" maxlength="4" aria-label="كود البلد">
+    </label>
+    <input id="numberInput" type="text" inputmode="tel" autocomplete="off" placeholder="الرقم" dir="ltr" aria-label="الرقم">
+  </div>
+  <hr>
+
+  <div class="actions">
+    <button type="button" class="action primary" id="waBtn" disabled><svg class="ico"><use href="#i-whatsapp"/></svg><span>واتساب</span></button>
+    <button type="button" class="action" id="callBtn" disabled><svg class="ico"><use href="#i-call"/></svg><span>اتصال</span></button>
+    <button type="button" class="action" id="saveBtn" disabled><svg class="ico"><use href="#i-save"/></svg><span>حفظ</span></button>
+  </div>
+  <p class="notice" id="notice" role="status" hidden></p>
+  <hr>
+
+  <footer class="credit">
+    <span>تطوير أحمد سعد</span>
+    <a href="https://wa.me/201019752501" dir="ltr">01019752501</a>
+  </footer>
+</main>
+
+<dialog id="countrySheet" class="sheet" aria-label="اختيار البلد">
+  <div class="sheet-head">
+    <h2>اختار البلد</h2>
+    <button type="button" class="icon-btn" data-close aria-label="إغلاق"><svg class="ico"><use href="#i-close"/></svg></button>
+  </div>
+  <input id="countrySearch" type="search" placeholder="ابحث باسم البلد أو الكود" autocomplete="off" aria-label="ابحث باسم البلد أو الكود">
+  <ul class="sheet-list" id="countryList"></ul>
+</dialog>
+
+<dialog id="historySheet" class="sheet" aria-label="الأرقام السابقة">
+  <div class="sheet-head">
+    <h2>الأرقام السابقة</h2>
+    <button type="button" class="icon-btn" data-close aria-label="إغلاق"><svg class="ico"><use href="#i-close"/></svg></button>
+  </div>
+  <p class="hint" id="historyEmpty">لسه مفيش أرقام. أي رقم تكتبه أو تكلمه هيظهر هنا.</p>
+  <ul class="sheet-list" id="historyList"></ul>
+  <button type="button" class="text-btn danger" id="historyClear" hidden>مسح كل الأرقام</button>
+</dialog>
+
+<dialog id="infoSheet" class="sheet" aria-label="عن التطبيق">
+  <div class="sheet-head">
+    <h2 dir="ltr">Click to chat</h2>
+    <button type="button" class="icon-btn" data-close aria-label="إغلاق"><svg class="ico"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="info-body">
+    <p>انسخ أي نص من أي مكان، واضغط زرار اللصق. هتلاقي كل رقم في سطر لوحده، ورقم التليفون متعلم عليه ومتحدد.</p>
+    <p>البلد بيتعرف لوحده من الرقم، ولو عايز تغيره اضغط على اسم البلد.</p>
+    <p>النصوص والأرقام بتفضل على تليفونك بس، ومش بتتبعت لأي مكان.</p>
+    <p class="info-credit">تطوير أحمد سعد<br><a href="https://wa.me/201019752501" dir="ltr">01019752501</a></p>
+  </div>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
