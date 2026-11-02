@@ -135,6 +135,15 @@ textarea[hidden] { display: none; }
   border: 1px solid var(--neon-dim); border-radius: 999px; padding: 2px 9px;
 }
 
+.cancel-btn {
+  align-self: flex-start; min-height: 44px; padding: 0 16px 0 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--ink); font-size: 15.500px; font-weight: 600;
+  border: 1.500px solid var(--ink-soft); border-radius: 999px;
+}
+.cancel-btn[hidden] { display: none; }
+.cancel-btn:active { background: rgba(255, 255, 255, .1); }
+
 .number-row { display: flex; align-items: flex-end; gap: 14px; }
 .code-field {
   display: flex; align-items: baseline; gap: 3px; width: clamp(66px, 21vw, 92px); flex: none;
@@ -200,12 +209,15 @@ textarea[hidden] { display: none; }
   border-bottom: 1px solid var(--line-soft);
 }
 .sheet-row.current { color: var(--neon); }
+#countrySheet { height: min(78dvh, 640px); }
+.sheet-section { position: sticky; top: 0; z-index: 1; background: var(--card-solid); padding: 10px 2px 6px; font-size: 14px; font-weight: 700; color: var(--neon); border-bottom: 1px solid var(--neon-dim); }
 .row-flag { font-size: 21px; flex: none; }
 .row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .row-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; }
-.row-code { direction: ltr; unicode-bidi: isolate; color: var(--ink-soft); font-size: 15px; flex: none; font-variant-numeric: tabular-nums; }
+.row-code { direction: ltr; unicode-bidi: isolate; color: var(--neon); font-size: 17px; font-weight: 700; flex: none; font-variant-numeric: tabular-nums; }
 .row-number { direction: ltr; unicode-bidi: isolate; text-align: right; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .row-meta { font-size: 13px; color: var(--ink-soft); }
+.sheet-row .row-meta[dir="ltr"] { text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .history-item { display: flex; align-items: stretch; border-bottom: 1px solid var(--line-soft); }
 .history-item .sheet-row { border-bottom: 0; flex: 1; min-width: 0; }

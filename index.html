@@ -60,6 +60,7 @@
     <p class="hint" id="hint">انسخ أي نص فيه أرقام، واضغط زرار اللصق.</p>
     <textarea id="manualBox" rows="3" hidden placeholder="الصق النص هنا" aria-label="الصق النص هنا"></textarea>
     <ul class="numbers" id="numbers" hidden></ul>
+    <button type="button" class="cancel-btn" id="cancelBtn" hidden><svg class="ico ico-sm"><use href="#i-close"/></svg><span>إلغاء</span></button>
   </section>
 
   <div class="number-row" dir="ltr">
@@ -91,6 +92,7 @@
     <button type="button" class="icon-btn" data-close aria-label="إغلاق"><svg class="ico"><use href="#i-close"/></svg></button>
   </div>
   <input id="countrySearch" type="search" placeholder="ابحث باسم البلد أو الكود" autocomplete="off" aria-label="ابحث باسم البلد أو الكود">
+  <p class="hint" id="countryNone" hidden>مفيش بلد بالاسم أو الكود ده.</p>
   <ul class="sheet-list" id="countryList"></ul>
 </dialog>
 

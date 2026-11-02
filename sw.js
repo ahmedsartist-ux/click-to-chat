@@ -1,5 +1,5 @@
 // Keeps the app working offline and serves the contact card from the phone itself.
-const VERSION = 'cct-v1';
+const VERSION = 'cct-v2';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
